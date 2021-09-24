@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\View"
+    "\\CSS",
+    "\\PHP",
+    "\\VIEW"
   ],
-  "SelectedNode": "\\View\\Home.php",
+  "SelectedNode": "\\VIEW\\cadastrar.php",
   "PreviewInSolutionExplorer": false
 }
