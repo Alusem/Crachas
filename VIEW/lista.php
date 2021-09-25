@@ -14,6 +14,13 @@
 </head>
 <body>
 
+             <ul>
+              <li><div><h1>Sistema Sam</h1></li>
+              <li><a href="home.php">Home</a></li>
+              <li><a class="active" href="lista.php">Funcion&aacute;rios</a></li>
+              <li><a href="configuracoes.php">Impress&atilde;o</a></li>
+             </ul>
+
                 <?php
                     
                     if(is_array($_SESSION) && isset($_SESSION['errosReportados'])){
@@ -35,83 +42,87 @@
                     session_unset();
                 ?>
 
-    <h1> Funcion&aacute;rios </h1>
-	<table id="tabelaF">
-        <thead>
-           <form method="post" action="lista.php" >
-                <tr>
-                    <th><input class="form-control" name="nomeF" id="nomeF" placeholder="Nome" na  me="nomeF"></th>
-                    <th><button type="submit" class="btn btn-primary">Buscar</button></th>
-                </tr>
-                <tr>
-                    <th>Nome</th>
-                    <th>Empresa</th>
-                    <th>Filial</th>
-                </tr>   
-           </form>
+    <h2> Funcion&aacute;rios </h2>
 
-        </thead>
-        <tbody>
-        <?php
-                if (isset(($_POST['nomeF']))){
-                    $pesquisaF = addslashes($_POST['nomeF']);
-                    $_POST['nomeF'] = "";
-                }else{
-                    $pesquisaF = "";
-                }
+    <div class="tabela-botao">
 
-        $consultaF = $pdo->query("SELECT * FROM crachas WHERE nomeCompleto LIKE '%". $pesquisaF ."%'");
-
-        while ($linhaF = $consultaF->fetch(PDO::FETCH_ASSOC)) {
-                ?>
+	    <table id="tabelaF">
+            <thead>
+               <form method="post" action="lista.php" >
                     <tr>
-                        <td>
-                            <?php echo $linhaF['nomeCompleto']; ?>
-                        </td>
-                        <td>
-                            <?php echo $linhaF['empresa']; ?>
-                        </td>
-                        <td>
-                            <?php echo $linhaF['filial']; ?>
-                        </td>
-                        <td>
-                            <form action="../VIEW/impressao.php">
-                                <input type="hidden" name="idFuncionario" value="<?php echo $linhaF['idCrachas'];?>">
-                                <div class="btn-deletar-funcionarios">
-                                    <button class="input-botão">Imprimir Crach&aacute;</button>
-                                </div>
-                            </form>
-                        </td>
-                        <td>
-                            <form action="../VIEW/editar.php">
-                                <input type="hidden" name="idFuncionario" value="<?php echo $linhaF['idCrachas'];?>">
-                                <div class="btn-editar-funcionarios">  
-                                    <button class="input-botão">Editar</button>
-                                </div>
-                            </form>
-                        </td>
-                        <td>
-                            <form action="../VIEW/deletar.php">
-                                <input type="hidden" name="idFuncionario" value="<?php echo $linhaF['idCrachas'];?>">
-                                <div class="btn-deletar-funcionarios">
-                                    <button class="input-botão">Deletar</button>
-                                </div>
-                            </form>
-                        </td>
+                        <th><input class="form-control" name="nomeF" id="nomeF" placeholder="Nome" na  me="nomeF"></th>
+                        <th><button type="submit" class="btn btn-primary">Buscar</button></th>
                     </tr>
-                <?php
-                }
-                ?>
-        </tbody>
-    </table>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Empresa</th>
+                        <th>Filial</th>
+                    </tr>   
+               </form>
 
-    <br>
+            </thead>
+            <tbody>
+            <?php
+                    if (isset(($_POST['nomeF']))){
+                        $pesquisaF = addslashes($_POST['nomeF']);
+                        $_POST['nomeF'] = "";
+                    }else{
+                        $pesquisaF = "";
+                    }
 
-    <form action="cadastrar.php">
-        <div class="btn-cadastrar-funcionario">
-            <button class="input-botão">Cadastrar Funcionario</button>
-        </div>
-    </form>
+            $consultaF = $pdo->query("SELECT * FROM crachas WHERE nomeCompleto LIKE '%". $pesquisaF ."%' OR empresa LIKE '%". $pesquisaF ."%' OR filial LIKE '%". $pesquisaF ."%' ");
 
+            while ($linhaF = $consultaF->fetch(PDO::FETCH_ASSOC)) {
+                    ?>
+                        <tr>
+                            <td>
+                                <?php echo $linhaF['nomeCompleto']; ?>
+                            </td>
+                            <td>
+                                <?php echo $linhaF['empresa']; ?>
+                            </td>
+                            <td>
+                                <?php echo $linhaF['filial']; ?>
+                            </td>
+                            <td class=botoes-tabela>
+                                <div class="container_acoes" >                                
+                                
+                                    <form action="../VIEW/impressao.php" class="acao">
+                                        <input type="hidden" name="idFuncionario" value="<?php echo $linhaF['idCrachas'];?>">
+                                        <div class="btn-deletar-funcionarios">
+                                            <button class="input-botão">Imprimir Crach&aacute;</button>
+                                        </div>
+                                    </form>
+                                    <br>
+                                    <form action="../VIEW/editar.php" class="acao">
+                                        <input type="hidden" name="idFuncionario" value="<?php echo $linhaF['idCrachas'];?>">
+                                        <div class="btn-editar-funcionarios">  
+                                            <button class="input-botão">Editar</button>
+                                        </div>
+                                    </form>
+                                    <br>
+                                    <form action="../VIEW/deletar.php" class="acao">
+                                        <input type="hidden" name="idFuncionario" value="<?php echo $linhaF['idCrachas'];?>">
+                                        <div class="btn-deletar-funcionarios">
+                                            <button class="input-botão">Deletar</button>
+                                        </div>
+                                    </form>  
+                                </div>
+                        </tr>
+                
+                    <?php
+                    }
+                    ?>
+            </tbody>
+        </table>
+
+        <br>
+
+            <form action="cadastrar.php">
+                <div class="btn-cadastrar-funcionario">
+                    <button class="input-botão">Cadastrar Funcionario</button>
+                </div>
+            </form>
+     </div>
 </body>
 </html>
