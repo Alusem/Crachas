@@ -19,7 +19,6 @@
             
     $dados2 = $consultaF->fetch();
 
-	$dados['dataAdimssao'] = date("n/j/Y");
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +48,7 @@
 				</div>
 
 				<div>
-					<input class="input" type="text" value="<?php echo date('d/m/Y', strtotime($dados['dataAdimssao']));?>" readonly><br>
+					<input class="input" type="text" value="<?php $date = new DateTime($dados['dataAdimssao']); echo $date->format('d/m/Y'); ?>" readonly><br>
 				</div>
 
 				<div>
