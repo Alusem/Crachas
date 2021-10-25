@@ -29,7 +29,7 @@ $empresas = $sql2->fetchAll(PDO::FETCH_ASSOC);
 
 #nome {
     font-size: 22px !important;
-    font-weight: 500;
+    font-weight: 700;
     text-align: center;
     position: relative;
     top: 12px !important;
@@ -38,7 +38,7 @@ $empresas = $sql2->fetchAll(PDO::FETCH_ASSOC);
 
 #cargo {
     font-size: 16px !important;
-    font-weight: 0;
+    font-weight: 300%;
     text-align: center;
     position: relative;
     top: 20px;

@@ -29,12 +29,13 @@ $empresas = $sql2->fetchAll(PDO::FETCH_ASSOC);
 
 #nome {
     font-size: 24px !important;
-    font-weight: 500 !important;
+    font-weight: 700 !important;
     text-transform: uppercase;
 }
 
 #cargo {
     font-size: 20px !important;
+    font-weight: 200% !important;
 }
 
 #foto {
