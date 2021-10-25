@@ -19,7 +19,6 @@
             
     $dados2 = $consultaF->fetch();
 
-	$dados['dataAdimssao'] = date("j/n/Y");
 	
 ?>
 

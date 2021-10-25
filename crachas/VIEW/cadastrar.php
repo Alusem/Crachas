@@ -23,7 +23,7 @@
 				<li><a href="home.php">Home</a></li>
 				<li><a class="active" href="lista.php">Funcion&aacute;rios</a></li>
 				<li><a href="empresas.php">Empresas</a></li>
-				<li><a href="configuracoes.php">Impress&atilde;o</a></li>
+				<li><a href="configuracoes.php">Background</a></li>
              </ul>
 		</header>
 
