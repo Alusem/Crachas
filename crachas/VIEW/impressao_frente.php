@@ -28,8 +28,8 @@
     <meta charset="utf-8" />
     <title>Impressão Crachá Frente</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link rel="stylesheet" href="/CSS/print_frente_<?php echo $dados2['empresa']; ?>.php">
-	<link rel="stylesheet" href="/CSS/dados_<?php echo $dados2['empresa']; ?>.css">
+	<link rel="stylesheet" href="../CSS/print_frente_<?php echo $dados2['empresa']; ?>.php">
+	<link rel="stylesheet" href="../CSS/dados_<?php echo $dados2['empresa']; ?>.css">
 
 </head>
 	

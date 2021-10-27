@@ -13,8 +13,8 @@
        <meta charset="utf-8"/>
        <title>Background</title>
        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-       <link rel="stylesheet" href="/CSS/listas.css">
-       <link rel="stylesheet" href="/CSS/configuracoes.css">
+       <link rel="stylesheet" href="../CSS/listas.css">
+       <link rel="stylesheet" href="../CSS/configuracoes.css">
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    </head>
    <body>
