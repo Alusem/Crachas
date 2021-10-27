@@ -1,0 +1,65 @@
+#contador{
+    width: 100%;
+    margin: auto;
+    color #ccc;
+    text-align: center;
+    font-size: 80px;
+    background-color: coral;
+}
+
+#contador2 {
+    width: 100%;
+    margin: auto;
+    color #ccc;
+    text-align: center;
+    font-size: 80px;
+    background-color: aqua;
+}
+
+#contador3 {
+    width: 100%;
+    margin: auto;
+    color #ccc;
+    text-align: center;
+    font-size: 80px;
+    background-color: mediumpurple;
+}
+
+#contador4 {
+    width: 100%;
+    margin: auto;
+    color #ccc;
+    text-align: center;
+    font-size: 80px;
+    background-color: yellowgreen;
+}
+
+.box {
+    text-align: center;
+}
+
+.bloco {
+
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    
+
+}
+
+.container {
+
+    padding-right: 0px;
+    padding-left: 0px;
+    width: 50%;
+    margin: 0px 25px 0px 0px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+    .container .box {
+        min-height: 56px;
+        min-width: 56px;
+    }
