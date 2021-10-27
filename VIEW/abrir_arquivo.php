@@ -3,7 +3,7 @@
 	global $pdo;
 ?>
 	 <?php
-
+		
 			$id = $_GET['idFuncionario'];
 
             $stringQuery = "SELECT * FROM crachas WHERE idCrachas = '".$id."';";

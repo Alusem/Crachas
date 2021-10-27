@@ -10,16 +10,19 @@
        <meta charset="utf-8"/>
        <title>Deletar Cadastro</title>
        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-       <link rel="stylesheet" href="/CSS/forms.css">
+       <link rel="stylesheet" href="../CSS/forms.css">
    </head>
    <body>
 
-       <ul>
-            <li><div><h1>Sistema Sam</h1></li>
-            <li><a href="home.php">Home</a></li>
-            <li><a class="active" href="lista.php">Funcion&aacute;rios</a></li>
-            <li><a href="configuracoes.php">Impress&atilde;o</a></li>
-       </ul>
+        <header>
+            <ul>
+                <li><div><h1>Sam Crach&aacute;s</h1></li>
+                <li><a href="home.php">Home</a></li>
+                <li><a class="active" href="lista.php">Funcion&aacute;rios</a></li>
+                <li><a href="empresas.php">Empresas</a></li>
+                <li><a href="configuracoes.php">Background</a></li>
+            </ul>
+		</header>
 
        <div class=form-criar-crachas>
             <div><h2>Deletar Crach&aacute;s</h2></div>
@@ -28,7 +31,7 @@
                     
                         $id = $_GET['idFuncionario'];       
 
-                        $sql = "SELECT * FROM crachas WHERE idCrachas = :idCrachas";
+                        $sql = "SELECT * FROM crachas c JOIN empresas e ON c.idEmpresa = e.idEmpresas  WHERE idCrachas = :idCrachas";
 		                $sql = $pdo->prepare($sql);
 		                $sql->bindValue("idCrachas", $id);
                         $sql->execute();
@@ -54,7 +57,7 @@
                         session_unset();
                     ?>
             <div class=centro-cadastro>
-                <form enctype="multipart/form-data"  method="POST" action="../PHP/deletar.php">  
+                <form id="form_deletar" enctype="multipart/form-data"  method="POST" action="../PHP/deletar.php">  
                 
                     <div>
                         <input type="hidden" name="idFuncionario" value="<?php echo $id?>">
@@ -113,14 +116,15 @@
                         <br>
                         <input class="input" minlength="4" type="text" name="codigoMatricula" id="inputCodigo" placeholder="C&oacute;digo Matricula" value="<?php echo $dados['codigoMatricula']; ?>" readonly><br>
                     </div>
-
+                    
+                    <label>Foto</label>
                     <div>
-                         <label>Foto</label>
-                         <input type="file" name="arquivo" class="form-control" readonly>
+                        <img src= <?php echo $dados['foto']; ?> ?idFuncionario= <?php echo $id;?>' width='162px' height = '218px'/>
                     </div>
                     <br>
+                 
                     <div class="btn1">
-                        <button class="input-botão" onclick="return confirm('Tem certeza que deseja deletar este funcionario');">Deletar</button>
+                        <button class="input-botï¿½o" onclick="return confirm('Tem certeza que deseja deletar este funcionario');">Deletar</button>
                     </div>
                 </form>   
             <div>

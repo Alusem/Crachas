@@ -1,28 +1,39 @@
 <?php
+    require '../PHP/conexao.php';
     session_start();
+    global $pdo;
+
+    $sql2 = $pdo->query("SELECT * FROM empresas");
+    $empresas = $sql2->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
    <head>
        <meta charset="utf-8"/>
-       <title>Cadastro</title>
+       <title>Cadastrar Funcionário</title>
        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-       <link rel="stylesheet" href="/CSS/forms.css">
+       <link rel="stylesheet" href="../CSS/forms.css">
    </head>
    <body>
 
-       <ul>
-            <li><div><h1>Sistema Sam</h1></li>
-            <li><a href="home.php">Home</a></li>
-            <li><a class="active" href="lista.php">Funcion&aacute;rios</a></li>
-            <li><a href="configuracoes.php">Impress&atilde;o</a></li>
-       </ul>
+        <header>
+             <ul>
+				<li><div><h1>Sam Crach&aacute;s</h1></li>
+				<li><a href="home.php">Home</a></li>
+				<li><a class="active" href="lista.php">Funcion&aacute;rios</a></li>
+				<li><a href="empresas.php">Empresas</a></li>
+				<li><a href="configuracoes.php">Background</a></li>
+             </ul>
+		</header>
 
             <div><h2>Cadastrar Crach&aacute;s</h2></div>
                 <div>
                     <?php
- 
+
+                        $sql2 = $pdo->query("SELECT * FROM empresas");
+                        $empresas = $sql2->fetchAll(PDO::FETCH_ASSOC);
+
                         if(is_array($_SESSION) && isset($_SESSION['errosReportados'])){
                             $erros = $_SESSION['errosReportados'];
                             foreach ($erros as $erro) {
@@ -42,11 +53,24 @@
                         session_unset();
                     ?>
             <div class=centro-cadastro>
-                <form enctype="multipart/form-data"  method="POST" action="../PHP/criar.php">  
+                <form  id="form_cadastro" enctype="multipart/form-data"  method="POST" action="../PHP/criar.php">  
 
-                    <div>
+                     <div>
                         <label>Empresa</label><br>
-                        <input class="input" minlength="1" type="text" name="empresa" id="inputEmpresa" placeholder="Empresa" value="<?php if (isset($campos)){ echo $campos['empresa'];}?>" required><br>
+                        <select class="input" name="empresa" id="inputEmpresa" required>
+
+                            <option value="" >Selecione a empresa</option>
+ 
+                            <?php
+                            foreach ($empresas as $empresa) {
+                                ?>
+                                 <option value="<?php echo $empresa['idEmpresas']; ?>"> <?php echo $empresa['empresa']; ?></option>
+                                 <?php
+                            }
+                            ?>
+                            <!--<option value="ROQUE" <?php if ($dados['empresa']=='ROQUE') { echo "selected"; }; ?>>ROQUE</option>
+                            <option value="QUERY" <?php if ($dados['empresa']=='QUERY') { echo "selected"; }; ?>>QUERY</option>-->
+                        </select>
                     </div>
 
                     <div>
@@ -71,7 +95,7 @@
 
                     <div>
                          <label>RG</label><br>
-                         <input class="input" type="text" name="rg" id="inputRG" placeholder="RG" required value="<?php if (isset($campos)){ echo $campos['rg'];}?>" required><br/>
+                         <input class="input" minlength="6" type="text" name="rg" id="inputRG" placeholder="RG" required value="<?php if (isset($campos)){ echo $campos['rg'];}?>" required><br/>
                     </div>
 
                     <div>
@@ -83,13 +107,13 @@
                     <div>
                         <label>CPF</label>
                         <br>
-                        <input class="input" minlength="11" maxlength="11" type="text" name="cpf" id="inputNome" placeholder="CPF" value="<?php if (isset($campos)){ echo $campos['cpf'];}?>" required><br>
+                        <input class="input" minlength="14" maxlength="14" type="text" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" id="inputNome" placeholder="Digite um CPF no formato: xxx.xxx.xxx-xx" value="<?php if (isset($campos)){ echo $campos['cpf'];}?>" required><br>
                     </div>
 
                     <div>
                         <label>Data de Admiss&atilde;o</label>
                         <br>
-                        <input class="input" minlength="10" type="date" name="data" id="inputData" placeholder="Data" value="<?php if (isset($campos)){ echo $campos['data'];}?>" required><br>
+                        <input class="input" minlength="10" maxlength="10" type="date" name="data" id="inputData" placeholder="Data" value="<?php if (isset($campos)){ echo $campos['data'];}?>" required><br>
                     </div>
 
                     <div>
@@ -100,7 +124,7 @@
 
                     <div class="foto_campo_input">
                          <label>Foto</label>
-                         <input type="file" name="arquivo" class="form-control" required>
+                         <input type="file" name="arquivo" class="form-control">
                     </div>
                     <br>
                     <div class="btn1">
