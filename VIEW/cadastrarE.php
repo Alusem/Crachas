@@ -22,41 +22,41 @@
              </ul>
 		</header>
 
-            <div><h2>Cadastrar Empresa</h2></div>
-                <div>
-                    <?php
- 
-                        if(is_array($_SESSION) && isset($_SESSION['errosReportados'])){
-                            $erros = $_SESSION['errosReportados'];
-                            foreach ($erros as $erro) {
-                                echo $erro;
-                                echo "<br>";
-                            }
-                        }
-
-                        if (is_array($_SESSION) && isset($_SESSION['cadastroRealizado'])){
-                            $sucesso = $_SESSION['cadastroRealizado'];
-                            echo $sucesso;
-                        }
-
-                        if (is_array($_SESSION) && isset($_SESSION['camposForm'])){
-                            $campos = $_SESSION['camposForm'];
-                        }
-                        session_unset();
-                    ?>
-            <div class=centro-cadastro>
-                <form  id="form_cadastro" enctype="multipart/form-data"  method="POST" action="../PHP/criarE.php">  
-
-                    <div>
-                        <label>Empresa</label><br>
-                        <input class="input" minlength="2" type="text" name="nomeEmpresa" id="inputNome" placeholder="Nome da Empresa" value="<?php if (isset($campos)){ echo $campos['nome'];}?>" required><br>
-                    </div>
-
-                    <div class="btn1">
-                        <button class="input-botao" type="submit">Cadastrar</button>
-                    </div>
-
-                </form>   
+        <div><h2>Cadastrar Empresa</h2></div>
             <div>
+                <?php
+
+                    if(is_array($_SESSION) && isset($_SESSION['errosReportados'])){
+                        $erros = $_SESSION['errosReportados'];
+                        foreach ($erros as $erro) {
+                            echo $erro;
+                            echo "<br>";
+                        }
+                    }
+
+                    if (is_array($_SESSION) && isset($_SESSION['cadastroRealizado'])){
+                        $sucesso = $_SESSION['cadastroRealizado'];
+                        echo $sucesso;
+                    }
+
+                    if (is_array($_SESSION) && isset($_SESSION['camposForm'])){
+                        $campos = $_SESSION['camposForm'];
+                    }
+                    session_unset();
+                ?>
+        <div class=centro-cadastro>
+            <form  id="form_cadastro" enctype="multipart/form-data"  method="POST" action="../PHP/criarE.php">  
+
+                <div>
+                    <label>Empresa</label><br>
+                    <input class="input" minlength="2" type="text" name="nomeEmpresa" id="inputNome" placeholder="Nome da Empresa" value="<?php if (isset($campos)){ echo $campos['nome'];}?>" required><br>
+                </div>
+
+                <div class="btn1">
+                    <button class="input-botao" type="submit">Cadastrar</button>
+                </div>
+
+            </form>
+        <div>
     </body>
 </html>

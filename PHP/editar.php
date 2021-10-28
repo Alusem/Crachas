@@ -14,11 +14,11 @@
     $id = addslashes($_POST['idFuncionario']);
 
     $sql = "SELECT foto FROM crachas c JOIN empresas e ON c.idEmpresa = e.idEmpresas WHERE idCrachas = :idCrachas";
+
         $sql = $pdo->prepare($sql);
         $sql->bindValue("idCrachas", $id);
         $sql->execute();
         $foto_antiga = $sql->fetch(PDO::FETCH_ASSOC);
-
 
     if (isset($_FILES["arquivo"]['name']) AND $_FILES["arquivo"]['name'] != null){
 
@@ -60,14 +60,15 @@
         $codigoMatricula = addslashes($_POST['codigoMatricula']);
 
         $sql = "SELECT * FROM crachas WHERE codigoMatricula = :codigoMatricula";
-                $sql = $pdo->prepare($sql);
-                $sql->bindValue("codigoMatricula", $codigoMatricula);
-                $sql->execute();
 
-                if($sql->rowCount() < 0){
-                    $erros[] = utf8_encode('Matricula incorreta!');
-                }
+        $sql = $pdo->prepare($sql);
+        $sql->bindValue("codigoMatricula", $codigoMatricula);
+        $sql->execute();
+
+        if($sql->rowCount() < 0){
+            $erros[] = utf8_encode('Matricula incorreta!');
         }
+    }
 
     if (strlen($_POST['rg']) ==  0){
         $erros[] = utf8_encode('Preencha o campo rg.');
@@ -76,37 +77,38 @@
         $rg = addslashes($_POST['rg']);
 
         $sql = "SELECT * FROM crachas WHERE numeroRG = :numeroRG";
-                $sql = $pdo->prepare($sql);
-                $sql->bindValue("numeroRG", $rg);
-                $sql->execute();
 
-                if($sql->rowCount() < 0){
-                    $erros[] = utf8_encode('RG incorreto!');
-                }
+        $sql = $pdo->prepare($sql);
+        $sql->bindValue("numeroRG", $rg);
+        $sql->execute();
+
+        if($sql->rowCount() < 0){
+            $erros[] = utf8_encode('RG incorreto!');
         }
+    }
 
     if (strlen($_POST['cpf']) == 0){
         $erros[] = utf8_encode('Preencha o campo CPF.');
 
-        }else {
+    }else {
 
-            $cpf = addslashes($_POST['cpf']);
+        $cpf = addslashes($_POST['cpf']);
 
-            if (validaCPF($cpf) == true){
-                
-                $sql = "SELECT * FROM crachas WHERE numeroCPF = :numeroCPF";
-                $sql = $pdo->prepare($sql);
-                $sql->bindValue("numeroCPF", $cpf);
-                $sql->execute();
+        if (validaCPF($cpf) == true){
+            
+            $sql = "SELECT * FROM crachas WHERE numeroCPF = :numeroCPF";
+            $sql = $pdo->prepare($sql);
+            $sql->bindValue("numeroCPF", $cpf);
+            $sql->execute();
 
-                if($sql->rowCount() < 0){
-                    $erros[] = utf8_encode('CPF incorreto!');
-                }
-
-            }else {
-                $erros[] = utf8_encode('CPF invalido.');
+            if($sql->rowCount() < 0){
+                $erros[] = utf8_encode('CPF incorreto!');
             }
+
+        }else {
+            $erros[] = utf8_encode('CPF invalido.');
         }
+    }
 
     if (isset($erros) && count($erros) > 0) {
         
@@ -115,6 +117,7 @@
         header("Location: ../VIEW/editar.php");
 
     }else {
+
         try {
             
             $id = addslashes($_POST['idFuncionario']);
@@ -122,6 +125,7 @@
             //$stmt = $pdo->prepare('UPDATE crachas SET idEmpresa = :idEmpresa, filial = :filial, nomeCompleto = :nomeCompleto, apelido = :apelido, cargo = :cargo, numeroRG = :numeroRG, orgaoExpeditor = :orgaoExpeditor, numeroCPF = :numeroCPF, dataAdimssao = :dataAdimssao, codigoMatricula = :codigoMatricula, foto = :foto WHERE idCrachas=:id');
             
             $hasFoto = false;
+
             if (isset($_FILES["arquivo"]['name']) && strlen(trim($_FILES["arquivo"]['name'])) > 0){
                 $strSql .= 'foto = :foto,';
                 $hasFoto = true;
@@ -152,7 +156,6 @@
                 $stmt->bindParam(':foto', $diretorioFileImg);
             }
         
-
             $retorno  = $stmt->execute();
             
             if (! $retorno){
@@ -163,11 +166,11 @@
                 ?> <script>window.location.href = "../VIEW/lista.php";</script> <?php
             }  
 
-            } catch(PDOException $e) {
-                echo 'Error: ' . $e->getMessage();
-            }
+        } catch(PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
+        }
 
-            }
+    }
 
 
     function validaCPF($cpf) {

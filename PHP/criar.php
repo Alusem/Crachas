@@ -13,7 +13,7 @@
     $diretorioFileImg = "";
 
     if (isset($_FILES["arquivo"])){
-       
+        
         $extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
         $novo_nome = md5(time()) . $extensao;
         $diretorio = "../IMG/Fotos_Funcionarios";
@@ -64,49 +64,49 @@
 
     if (strlen($_POST['rg']) ==  0){
         $erros[] = utf8_encode('Preencha o campo rg.');
+        
     }else {
 
         $rg = addslashes($_POST['rg']);
 
         $sql = "SELECT * FROM crachas WHERE numeroRG = :numeroRG";
-                $sql = $pdo->prepare($sql);
-                $sql->bindValue("numeroRG", $rg);
-                $sql->execute();
+        $sql = $pdo->prepare($sql);
+        $sql->bindValue("numeroRG", $rg);
+        $sql->execute();
 
-                if($sql->rowCount() > 0){
-                    $erros[] = utf8_encode('RG j� cadastrado.');
-                }
+        if($sql->rowCount() > 0){
+            $erros[] = utf8_encode('RG j� cadastrado.');
         }
+    }
 
     if (strlen($_POST['cpf']) == 0){
         $erros[] = utf8_encode('Preencha o campo CPF.');
 
-        }else {
+    }else {
 
-            $cpf = addslashes($_POST['cpf']);
+        $cpf = addslashes($_POST['cpf']);
 
-            if (validaCPF($cpf) == true){
-                
-                $sql = "SELECT * FROM crachas WHERE numeroCPF = :numeroCPF";
-                $sql = $pdo->prepare($sql);
-                $sql->bindValue("numeroCPF", $cpf);
-                $sql->execute();
+        if (validaCPF($cpf) == true){
+            
+            $sql = "SELECT * FROM crachas WHERE numeroCPF = :numeroCPF";
+            $sql = $pdo->prepare($sql);
+            $sql->bindValue("numeroCPF", $cpf);
+            $sql->execute();
 
-                if($sql->rowCount() > 0){
-                    $erros[] = utf8_encode('CPF j� cadastrado.');
-                }
-
-            }else {
-                $erros[] = utf8_encode('CPF invalido.');
+            if($sql->rowCount() > 0){
+                $erros[] = utf8_encode('CPF j� cadastrado.');
             }
+
+        }else {
+            $erros[] = utf8_encode('CPF invalido.');
         }
+    }
 
     if (isset($erros) && count($erros) > 0) {
         
         $_SESSION['camposForm'] = $_POST;
         $_SESSION['errosReportados'] = $erros;
         header("Location: ../VIEW/cadastrar.php");
-
 
     }else {
 

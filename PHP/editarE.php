@@ -5,39 +5,39 @@
 
     $nomeEmpresa = addslashes($_POST['nomeEmpresa']);
  
-if (strlen($_POST['nomeEmpresa']) ==  0){
-	$erros[] = utf8_encode('Preencha o campo nome empresa.');
-} 
+    if (strlen($_POST['nomeEmpresa']) ==  0){
+        $erros[] = utf8_encode('Preencha o campo nome empresa.');
+    } 
 
-
-if (isset($erros) && count($erros) > 0) {
-    
-    $_SESSION['camposForm'] = $_POST;
-    $_SESSION['errosReportados'] = $erros;
-    header("Location: ../VIEW/editar.php");
-
-}else {
-     try {
+    if (isset($erros) && count($erros) > 0) {
         
-         $id = addslashes($_POST['idEmpresas']);
+        $_SESSION['camposForm'] = $_POST;
+        $_SESSION['errosReportados'] = $erros;
+        header("Location: ../VIEW/editar.php");
 
-	     $stmt = $pdo->prepare('UPDATE empresas SET empresa = :empresa WHERE idEmpresas=:id');
-	 
-         $stmt->bindParam(':id', $id);
-         $stmt->bindParam(':empresa', $nomeEmpresa);
+    }else {
 
-         $retorno  = $stmt->execute();
+        try {
+            
+            $id = addslashes($_POST['idEmpresas']);
 
-             if (! $retorno){
-                ?> <script>alert("Erro, tente novamente!");</script> <?php
-                ?> <script>window.location.href = "../VIEW/editarE.php";</script> <?php
-             }else {
-                ?> <script>alert("Empresa editado com sucesso!");</script> <?php
-                ?> <script>window.location.href = "../VIEW/empresas.php";</script> <?php
-             }  
+            $stmt = $pdo->prepare('UPDATE empresas SET empresa = :empresa WHERE idEmpresas=:id');
+        
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':empresa', $nomeEmpresa);
 
-     } catch(PDOException $e) {
-          echo 'Error: ' . $e->getMessage();
-     }
+            $retorno  = $stmt->execute();
 
-     }
+                if (! $retorno){
+                    ?> <script>alert("Erro, tente novamente!");</script> <?php
+                    ?> <script>window.location.href = "../VIEW/editarE.php";</script> <?php
+                }else {
+                    ?> <script>alert("Empresa editado com sucesso!");</script> <?php
+                    ?> <script>window.location.href = "../VIEW/empresas.php";</script> <?php
+                }  
+
+        } catch(PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
+        }
+
+    }

@@ -7,7 +7,7 @@
  
     if (strlen($_POST['nomeEmpresa']) ==  0){
         $erros[] = utf8_encode('Preencha o campo nome empresa.');
-    } 
+    }
 
     if (isset($erros) && count($erros) > 0) {
         
@@ -16,6 +16,7 @@
         header("Location: ../VIEW/deletar.php");
 
     }else {
+
         try {
             
             $id = addslashes($_POST['idEmpresa']);
@@ -25,7 +26,7 @@
             $stmt->bindParam(':id', $id);
             
             if ($id > 0 ){
-            $retorno  = $stmt->execute();
+                $retorno  = $stmt->execute();
             }
     
             if (! $retorno){
