@@ -20,19 +20,6 @@
         $sql->execute();
         $foto_antiga = $sql->fetch(PDO::FETCH_ASSOC);
 
-    if (isset($_FILES["arquivo"]['name']) AND $_FILES["arquivo"]['name'] != null){
-
-        $extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
-        $novo_nome = md5(time()) . $extensao;
-        $diretorio = "../IMG/Fotos_Funcionarios";
-        
-        if (!file_exists($diretorio)) {
-                mkdir($diretorio, 0777, true);
-            }
-
-        $retorno = move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorioFileImg = $diretorio."/Funcionarios".$novo_nome);
-    }
-
     if (strlen($_POST['nome']) ==  0){
         $erros[] = utf8_encode('Preencha o campo nome.');
     }
@@ -120,6 +107,19 @@
 
         try {
             
+            if (isset($_FILES["arquivo"]['name']) AND $_FILES["arquivo"]['name'] != null){
+
+                $extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
+                $novo_nome = md5(time()) . $extensao;
+                $diretorio = "../../crachas/IMG/Fotos_Funcionarios/Funcionarios9315124b1ab632c6f11187db3142a591jfif";
+        
+                if (!file_exists($diretorio)) {
+                        mkdir($diretorio, 0777, true);
+                    }
+
+                $retorno = move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorioFileImg = $diretorio."/Funcionarios".$novo_nome);
+            }
+
             $id = addslashes($_POST['idFuncionario']);
             $strSql = 'UPDATE crachas SET idEmpresa = :idEmpresa, filial = :filial, nomeCompleto = :nomeCompleto, apelido = :apelido, cargo = :cargo, numeroRG = :numeroRG, orgaoExpeditor = :orgaoExpeditor, numeroCPF = :numeroCPF, dataAdimssao = :dataAdimssao, codigoMatricula = :codigoMatricula,';
             //$stmt = $pdo->prepare('UPDATE crachas SET idEmpresa = :idEmpresa, filial = :filial, nomeCompleto = :nomeCompleto, apelido = :apelido, cargo = :cargo, numeroRG = :numeroRG, orgaoExpeditor = :orgaoExpeditor, numeroCPF = :numeroCPF, dataAdimssao = :dataAdimssao, codigoMatricula = :codigoMatricula, foto = :foto WHERE idCrachas=:id');
