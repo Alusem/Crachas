@@ -101,13 +101,13 @@
         
             $extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
             $novo_nome = md5(time()) . $extensao;
-            $diretorio = "/crachas/IMG/Fotos_Funcionarios";
+            $diretorio = "/crachas/IMG/Fotos_Funcionarios/";
         
             if (!file_exists($diretorio)) {
                     mkdir($diretorio, 0777, true);
                 }
 
-            $retorno = move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorioFileImg = $diretorio."/Funcionarios".$novo_nome);
+            $retorno = move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorioFileImg = $diretorio."Funcionarios".$novo_nome);
         }
 
         $stmt = $pdo->prepare("INSERT INTO crachas (idEmpresa, filial, nomeCompleto, apelido, cargo, numeroRG, orgaoExpeditor, numeroCPF, dataAdimssao, codigoMatricula, foto) VALUES(:empresa, :filial, :nomeCompleto, :apelido, :cargo, :numeroRG, :orgaoExpeditor, :numeroCPF, :dataAdimssao, :codigoMatricula, :foto)");
