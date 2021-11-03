@@ -111,7 +111,7 @@
 
                 $extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
                 $novo_nome = md5(time()) . $extensao;
-                $diretorio = "../../crachas/IMG/Fotos_Funcionarios";
+                $diretorio = "/crachas/IMG/Fotos_Funcionarios";
         
                 if (!file_exists($diretorio)) {
                         mkdir($diretorio, 0777, true);
