@@ -120,7 +120,7 @@
                 <div>
                     <label>C&oacute;digo da Matricula</label>
                     <br>
-                    <input class="input" minlength="4" type="text" name="codigoMatricula" id="inputCodigo" placeholder="C&oacute;digo Matricula" value="<?php if (isset($campos)){ echo $campos['codigoMatricula'];}?>" required><br>
+                    <input class="input" type="text" name="codigoMatricula" id="inputCodigo" placeholder="C&oacute;digo Matricula" value="<?php if (isset($campos)){ echo $campos['codigoMatricula'];}?>" required><br>
                 </div>
 
                 <div class="foto_campo_input">
