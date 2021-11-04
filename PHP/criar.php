@@ -104,7 +104,7 @@
             $diretorio = "../IMG/Fotos_Funcionarios/";
         
             if (!file_exists($diretorio)) {
-                    mkdir($diretorio, 0777, true);
+                    mkdir($diretorio, 755, true);
                 }
 
             $retorno = move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorioFileImg = $diretorio."Funcionarios".$novo_nome);
