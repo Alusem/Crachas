@@ -97,18 +97,18 @@
 
     }else {
 
-        if (isset($_FILES["arquivo"])){
-        
-            $extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
-            $novo_nome = md5(time()) . $extensao;
-            $diretorio = "/crachas/IMG/Fotos_Funcionarios/";
-        
-            if (!file_exists($diretorio)) {
-                    mkdir($diretorio, 777, true);
-                }
+        if (isset($_FILES["arquivo"]['name']) AND $_FILES["arquivo"]['name'] != null){
 
-            $retorno = move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorioFileImg = $diretorio."Funcionarios".$novo_nome);
-        }
+                $extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
+                $novo_nome = md5(time()) . $extensao;
+                $diretorio = "../IMG/Fotos_Funcionarios/";
+        
+                if (!file_exists($diretorio)) {
+                        mkdir($diretorio, 777, true);
+                    }
+
+                $retorno = move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorioFileImg = $diretorio."Funcionarios".$novo_nome);
+            }
 
         $stmt = $pdo->prepare("INSERT INTO crachas (idEmpresa, filial, nomeCompleto, apelido, cargo, numeroRG, orgaoExpeditor, numeroCPF, dataAdimssao, codigoMatricula, foto) VALUES(:empresa, :filial, :nomeCompleto, :apelido, :cargo, :numeroRG, :orgaoExpeditor, :numeroCPF, :dataAdimssao, :codigoMatricula, :foto)");
         $stmt->execute(array(':empresa' => $empresa,':filial' => $filial, ':nomeCompleto' => $nome, ':apelido' => $apelido, ':cargo' => $cargo, ':numeroRG' => $rg,':orgaoExpeditor' => $orgaoExpeditor, ':numeroCPF' => $cpf, ':dataAdimssao' => $data, ':codigoMatricula' => $codigoMatricula, ':foto' => $diretorioFileImg ));
