@@ -119,7 +119,7 @@
                     
                     <label>Foto</label>
                     <div>
-                        <img src= <?php echo $dados['foto']; ?> ?idFuncionario= <?php echo $id;?>' width='162px' height = '218px'/>
+                        <img src= <?php echo $dados['foto']; ?> ?idFuncionario= <?php echo $id;?> width='162px' height = '218px'/>
                     </div>
                     <br>
                  
