@@ -4,6 +4,14 @@ h2 {
     padding: 0px 0px 20px 0px;
 }
 
+.Usuario {
+    color: #666;
+}
+
+.Usuario:hover {
+    color: #000;
+}
+
     h2:before,
     h2:after {
         content: "";
