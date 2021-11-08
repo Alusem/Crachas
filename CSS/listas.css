@@ -2,6 +2,14 @@
     background-color: #6b37b7;
 }
 
+.Usuario {
+    color: #666;
+}
+
+.Usuario:hover {
+    color: #000;
+}
+
 .tabela-botao{
     padding: 0px 25px;
 }

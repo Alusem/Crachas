@@ -1,4 +1,8 @@
 <?php
+    require_once("../PHP/login.class.php");
+    $login = new Login();
+    $login->verificar("login.php");
+
 	require '../PHP/conexao.php';
 	global $pdo;
 
@@ -20,13 +24,36 @@
    <body>
 
         <header>
-             <ul>
-				<li><div><h1>Sam Crach&aacute;s</h1></li>
-				<li><a href="home.php">Home</a></li>
-				<li><a href="lista.php">Funcion&aacute;rios</a></li>
-				<li><a href="empresas.php">Empresas</a></li>
-				<li><a class="active" href="configuracoes.php">Background</a></li>
-             </ul>
+            <ul>
+                <li>
+                    <div>
+                        <h1>Sam Crach&aacute;s</h1></li>
+                    </div>
+                <li>
+                    <a href="home.php">Home</a>
+                </li>
+
+                <li>
+                    <a href="lista.php">Funcion&aacute;rios</a>
+                </li>
+
+                <li>
+                    <a href="empresas.php">Empresas</a>
+                </li>
+
+                <li>
+                    <a class="active" href="configuracoes.php">Background</a>
+                </li>
+
+                <li>
+                    <div class="Usuario">
+                        <a> <?php echo $LoginUsuario;?> </a></li>
+                    </div>
+                <li>
+                    <div class="Usuario">
+                         <a href="login.php">Sair</a></li>
+                    </div>
+            </ul>
 		</header>
 
        <h2>Configura&ccedil;&otilde;es</h2></div>

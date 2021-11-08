@@ -1,8 +1,11 @@
 
 <?php
+    require_once("../PHP/login.class.php");
+    $login = new Login();
+    $login->verificar("login.php");    
+
     require '../PHP/conexao.php';
 	global $pdo;
-	session_start();
 ?>
 
 <!DOCTYPE html>
@@ -18,11 +21,34 @@
 
         <header>
             <ul>
-                <li><div><h1>Sam Crach&aacute;s</h1></li>
-                <li><a class="active" href="home.php">Home</a></li>
-                <li><a href="lista.php">Funcion&aacute;rios</a></li>
-                <li><a href="empresas.php">Empresas</a></li>
-                <li><a href="configuracoes.php">Background</a></li>
+                <li>
+                    <div>
+                        <h1>Sam Crach&aacute;s</h1></li>
+                    </div>
+                <li>
+                    <a class="active" href="home.php">Home</a>
+                </li>
+
+                <li>
+                    <a href="lista.php">Funcion&aacute;rios</a>
+                </li>
+
+                <li>
+                    <a href="empresas.php">Empresas</a>
+                </li>
+
+                <li>
+                    <a href="configuracoes.php">Background</a>
+                </li>
+
+                <li>
+                    <div class="Usuario">
+                        <a> <?php echo $LoginUsuario;?> </a></li>
+                    </div>
+                <li>
+                    <div class="Usuario">
+                         <a href="login.php">Sair</a></li>
+                    </div>
             </ul>
 		</header>
 
