@@ -15,7 +15,7 @@ if (strlen($_POST['login']) == 0){
 
 if (isset($erros) && count($erros) > 0) {
     $_SESSION['errosReportados'] = $erros;
-    header("Location: ../View/login.php");
+    header("Location: ../VIEW/login.php");
 
 	}else {
 		
@@ -34,13 +34,13 @@ if (isset($erros) && count($erros) > 0) {
 			$_SESSION['SenhaUsuario'] = $senha;
 			
 			$login = new Login(); 
-			header("Location: /crachas/VIEW/home.php");
+			header("Location: ../VIEW/home.php");
 
 		}else{
 			$erros[] = utf8_encode('Usuario ou senha inválidos.');
 			if (isset($erros) && count($erros) > 0) {
 			$_SESSION['errosReportados'] = $erros;
-			header("Location: /crachas/VIEW/login.php");
+			header("Location: ../VIEW/login.php");
 			}
 		}
 	}
