@@ -41,14 +41,22 @@ button {
     color: #fff;
     text-transform: uppercase;
     width: 270px;
+<<<<<<< HEAD
     height: 50px;
+=======
+    height: 65px;
+>>>>>>> fd26a6e4adbc9202f5e87716e10b3f3b3cc654bc
     border-radius: 25px;
     background: #007bff;
     border: none;
     margin: 0px;
     box-sizing: border-box;
     transition: all 0.4s;
+<<<<<<< HEAD
     padding: 0 0 65px 0;
+=======
+    padding: 0 0px 65px 0;
+>>>>>>> fd26a6e4adbc9202f5e87716e10b3f3b3cc654bc
 }
 
     button:hover {
