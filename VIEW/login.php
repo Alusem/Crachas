@@ -1,8 +1,14 @@
 <?php
-	require_once("../PHP/login.class.php");
-	$login = new Login();
-	$login->logout();
 
+	require_once("../PHP/login.class.php");
+    $login = new Login();
+    $login->verificar();
+	
+	if (isset($LoginUsuario)) {
+		require_once("../PHP/login.class.php");
+		$login = new Login();
+		$login->logout();
+	}
 ?>
 
 <!DOCTYPE html>
@@ -17,25 +23,25 @@
 	</head>
 	<body>
 
-		<div>
-			<?php
-				
-			session_start();
-
-				if(is_array($_SESSION) && isset($_SESSION['errosReportados'])){
-					$erros = $_SESSION['errosReportados'];
-                    foreach ($erros as $erro) {
-                        echo $erro;
-                        echo "<br>";
-                    }
-                    session_unset();
-                }
-			?>
-         </div>
-
 		 <h1> SamCrach&aacute;s </h1>
 
-		 <br> <br>
+		<div>
+			<?php
+
+			
+
+			if(is_array($_SESSION) && isset($_SESSION['errosReportados'])){
+				$erros = $_SESSION['errosReportados'];
+                    foreach ($erros as $erro) {
+						echo $erro;
+						echo "<br>";
+                    }
+					session_unset();
+                }
+			?>
+        </div>
+
+		<br> 
 
 		<div>
 			<form method="POST" action="../PHP/logar.php">

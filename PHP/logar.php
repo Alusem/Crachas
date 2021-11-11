@@ -1,46 +1,29 @@
 <?php
-	session_start();
 	require '../PHP/conexao.php';
-	require_once("login.class.php");
 	global $pdo;
 
 if (strlen($_POST['senha']) ==  0){
-	$erros[] = utf8_encode('Preencha o campo senha.');
+	session_start();
+	$erros[] = utf8_encode('Preencha o campo senha');
+	$_SESSION['errosReportados'] = $erros;
+	header("Location: /crachas/VIEW/login.php");
+}else {
+	$senhaUser = $_POST['senha'];
 }
 
+
 if (strlen($_POST['login']) == 0){
-	$erros[] = utf8_encode('Preencha o campo login.');
-
-	}
-
-if (isset($erros) && count($erros) > 0) {
-    $_SESSION['errosReportados'] = $erros;
-    header("Location: ../VIEW/login.php");
-
+	session_start();
+	$erros[] = utf8_encode('Preencha o campo login');
+	$_SESSION['errosReportados'] = $erros;
+	header("Location: /crachas/VIEW/login.php");
 	}else {
-		
-		$login = addslashes($_POST['login']);
-		$senha = addslashes($_POST['senha']);
+	$loginUser = $_POST['login'];
+}
 
-		$sql = "SELECT * FROM usuarios WHERE loginUsuarios = :loginUsuarios AND senhaUsuarios = :senhaUsuarios";
-		$sql = $pdo->prepare($sql);
-		$sql->bindValue("loginUsuarios", $login);
-		$sql->bindValue("senhaUsuarios", $senha);
-		$sql->execute();
-
-		if($sql->rowCount() > 0){
-			$dado = $sql->fetch();
-			$_SESSION['LoginUsuario'] = $login;
-			$_SESSION['SenhaUsuario'] = $senha;
-			
-			$login = new Login(); 
-			header("Location: /crachas/VIEW/home.php");
-
-		}else{
-			$erros[] = utf8_encode('Usuario ou senha inválidos.');
-			if (isset($erros) && count($erros) > 0) {
-			$_SESSION['errosReportados'] = $erros;
-			header("Location: /crachas/VIEW/login.php");
-			}
-		}
-	}
+if (strlen($_POST['login']) > 0 && strlen($_POST['senha'] > 0)){
+	require_once("login.class.php");		
+	$login = new Login();
+	$login->login_user_params();
+	$logar = $login->logar($loginUser, $senhaUser);
+}
