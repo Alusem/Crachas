@@ -43,15 +43,34 @@
                     <div class="Usuario">
                         <a> <?php echo $LoginUsuario;?> </a></li>
                     </div>
+                </li>
+
+                <?php
+                    $consulta = $pdo->query("SELECT isAdmin FROM usuarios WHERE '$LoginUsuario' = loginUsuarios");
+	                $campo = $consulta->fetch(PDO::FETCH_ASSOC);
+	                if($consulta->rowCount() != 0){
+                ?>
+
+                <li>
+                    <div class="Usuario">
+                        <a href="Admin.php"> <?php echo "ADM";?> </a></li>
+                    </div>
+                </li>
+                
+                <?php
+                    }
+                ?>
+                
                 <li>
                     <div class="Usuario">
                          <a href="login.php">Sair</a></li>
                     </div>
+                </li>
             </ul>
 		</header>
 
         <div class=form-criar-crachas>
-            <div><h2>Editar Crach&aacute;s</h2></div>
+            <div><h2>Editar Funcion&aacute;rio</h2></div>
                 <div>
                     <?php
                     

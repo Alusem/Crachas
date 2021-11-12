@@ -49,10 +49,29 @@
                     <div class="Usuario">
                         <a> <?php echo $LoginUsuario;?> </a></li>
                     </div>
+                </li>
+
+                <?php
+                    $consulta = $pdo->query("SELECT isAdmin FROM usuarios WHERE '$LoginUsuario' = loginUsuarios");
+	                $campo = $consulta->fetch(PDO::FETCH_ASSOC);
+	                if($consulta->rowCount() != 0){
+                ?>
+
+                <li>
+                    <div class="Usuario">
+                        <a href="Admin.php"> <?php echo "ADM";?> </a></li>
+                    </div>
+                </li>
+                
+                <?php
+                    }
+                ?>
+                
                 <li>
                     <div class="Usuario">
                          <a href="login.php">Sair</a></li>
                     </div>
+                </li>
             </ul>
 		</header>
 

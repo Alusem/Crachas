@@ -16,7 +16,7 @@
 	$empresa = $dados['idEmpresa'];
 
     $consultaF = $pdo->query("SELECT * FROM empresas WHERE idEmpresas = ". $empresa);
-            
+
     $dados2 = $consultaF->fetch();
 
 ?>

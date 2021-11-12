@@ -35,7 +35,7 @@ class Login {
 				$consulta2 = $pdo->query("SELECT ".$this->campoSenha." FROM ".$this->tabela." WHERE ".$this->campoLogin." = '".$this->LoginUsuario."' LIMIT 0,1");
 				$campos2 = $consulta2->fetch(PDO::FETCH_ASSOC);
 
-				if($senha != $campos2['senhaUsuarios']):
+				if(MD5($senha) != $campos2['senhaUsuarios']):
 					session_start();
 					$erros[] = utf8_encode('Senha inv&aacute;lida');
 					$_SESSION['errosReportados'] = $erros;
