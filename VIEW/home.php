@@ -48,18 +48,20 @@
                 </li>
 
                 <?php
-                    $consulta = $pdo->query("SELECT isAdmin FROM usuarios WHERE '$LoginUsuario' = loginUsuarios");
-	                $campo = $consulta->fetch(PDO::FETCH_ASSOC);
-	                if($consulta->rowCount() != 0){
-                ?>
 
-                <li>
-                    <div class="Usuario">
-                        <a href="Admin.php"> <?php echo "ADM";?> </a></li>
-                    </div>
-                </li>
-                
-                <?php
+                    $sql = "SELECT isAdmin FROM usuarios WHERE loginUsuarios = :loginUsuarios";
+                    $sql = $pdo->prepare($sql);
+                    $sql->bindValue("loginUsuarios", $LoginUsuario);
+                    $sql->execute();
+	                $campo = $sql->fetch(PDO::FETCH_ASSOC);
+
+	                if($campo['isAdmin'] != 0){
+                        echo
+                        "<li>
+                            <div class='Usuario'>
+                                <a href='Admin.php'> ADM </a></li>
+                            </div>
+                        </li>";
                     }
                 ?>
                 

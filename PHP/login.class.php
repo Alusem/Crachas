@@ -39,7 +39,7 @@ class Login {
 					session_start();
 					$erros[] = utf8_encode('Senha inv&aacute;lida');
 					$_SESSION['errosReportados'] = $erros;
-					header("Location: /crachas/VIEW/login.php");
+					header("Location: ../VIEW/login.php");
 
 				// Se a senha estiver correta
 				else:
@@ -58,7 +58,7 @@ class Login {
 				session_start();
 				$erros[] = utf8_encode('Usuario inv&aacute;lido');
 				$_SESSION['errosReportados'] = $erros;
-				header("Location: /crachas/VIEW/login.php");
+				header("Location: ../VIEW/login.php");
 				endif;
 
 		}catch(Exception $e){
