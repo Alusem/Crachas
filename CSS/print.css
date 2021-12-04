@@ -1,0 +1,19 @@
+body {
+    background: #FFF;
+    color: #000;
+    font: 12pt serif;
+}
+
+.form-crachas-frente {
+    
+    font-family: Roboto, sans-serif;
+    text-align: center;
+    padding: 50px 800px 150px 800px;
+}
+
+.form-crachas-verso {
+    font-family: Roboto, sans-serif;
+    text-align: left;
+    padding: 50px 800px 150px 800px;
+}
+
